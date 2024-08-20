@@ -1,0 +1,20 @@
+from enum import Enum
+
+class resource_types(Enum):
+    Patient = "Patient"
+    CarePlan = "CarePlan"
+    CareTeam = "CareTeam"
+    Claim = "Claim"
+    Condition = "Condition"
+    DiagnosticReport = "DiagnosticReport"
+    DocumentReference = "DocumentReference"
+    Encounter = "Encounter"
+    ExplanationOfBenefit = "ExplanationOfBenefit"
+    ImagingStudy = "ImagingStudy"
+    Immunization = "Immunization"
+    Medication = "Medication"
+    MedicationAdministration = "MedicationAdministration"
+    MedicationRequest = "MedicationRequest"
+    Observation = "Observation"
+    Procedure = "Procedure"
+    Provenance = "Provenance"
