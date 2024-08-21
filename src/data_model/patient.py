@@ -1,15 +1,25 @@
+from typing import Optional
+from sqlalchemy import Date
+from sqlalchemy import String
+from sqlalchemy import Uuid
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+import uuid
+from data_model.base import Base
 
-mapping = {
-    "PatientGuid": "resource.id",
-    "Gender": "resource.gender",
-    "BirthDate": "resource.birthDate",
-    "MultipleBirthBoolean": "resource.multipleBirthBoolean",
-    "FamilyName": "resource.name[0].family",   # First entry in the name list
-    "GivenName": "resource.name[0].given[0]",  # First given name from the first name entry
-    "Prefix": "resource.name[0].prefix[0]",    # First prefix from the first name entry
-    "BirthPlaceCity": "resource.extension[4].valueAddress.city",  # City from the birthPlace extension
-    "BirthPlaceState": "resource.extension[4].valueAddress.state",  # State from the birthPlace extension
-    "BirthPlaceCountry": "resource.extension[4].valueAddress.country",  # Country from the birthPlace extension
-    "DisabilityAdjustedLifeYears": "resource.extension[5].valueDecimal",  # Disability adjusted life years
-    "QualityAdjustedLifeYears": "resource.extension[6].valueDecimal"  # Quality adjusted life years
-}
+class Patient(Base):
+    __tablename__ = "Patient"
+
+    id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True)
+    gender: Mapped[str] = mapped_column(String(30))    
+    birth_date: Mapped[str] = mapped_column(Date)    
+    family_name: Mapped[str] = mapped_column(String(30))
+    fullname: Mapped[Optional[str]]
+
+
+    def __init__(self, dict):
+        self.id = dict["PatientGuid"]
+        self.gender = dict["Gender"]
+        self.birth_date = dict["BirthDate"]
+        self.family_name = dict["FamilyName"]
+

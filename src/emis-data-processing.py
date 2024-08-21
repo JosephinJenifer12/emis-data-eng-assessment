@@ -1,26 +1,28 @@
-import  json;
-import pandas as pd;
-from IPython.display import display
-from mapper import get_mapping, map_data
+import json
+from data_access.database import create_db_engine, insert_data
+from data_mapper.helper import get_mapping, map_data
+from data_model.helper import get_model
 from enums.resource_types import resource_types
 import os
+from constants import files_directory
+from time import sleep
 
-files_directory = "data"
+sleep(10)
 
-def process_file(file_path):
-    
+db_engine = create_db_engine()
+
+def process_file(file_path):    
     with open(file_path, 'r') as j:
         contents = json.loads(j.read())
 
-    data = []
     for entry_data in contents["entry"]:
         resource_type = resource_types(entry_data["resource"]["resourceType"])
-        mapping = get_mapping(resource_type)
-
-        # Applying the mapping to the patient_json_data
-        mapped_patient_data = map_data(mapping, entry_data)
-        df = pd.DataFrame([mapped_patient_data])
-        df.to_csv(f"test.csv", index=False)
+        if resource_type == resource_types.Patient:
+            print(f"Processing {resource_type}")
+            mapping = get_mapping(resource_type)
+            mapped_patient_data = map_data(mapping, entry_data)
+            model = get_model(resource_type)(mapped_patient_data)
+            insert_data(db_engine, model)
 
 for filename in os.listdir(os.path.abspath(files_directory)):
     if filename.endswith(".json"):        

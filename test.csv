@@ -1,0 +1,2 @@
+PatientGuid,Gender,BirthDate,MultipleBirthBoolean,FamilyName,GivenName,Prefix,BirthPlaceCity,BirthPlaceState,BirthPlaceCountry,DisabilityAdjustedLifeYears,QualityAdjustedLifeYears
+8c95253e-8ee8-9ae8-6d40-021d702dc78e,male,1944-08-28,False,Dickens475,Aaron697,Mr.,Barnstable,Massachusetts,US,0.05826471038258488,52.94173528961741

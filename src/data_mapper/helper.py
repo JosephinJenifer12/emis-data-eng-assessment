@@ -1,5 +1,6 @@
+from data_model.patient import Patient
 from enums.resource_types import resource_types
-from data_model.patient import mapping
+from data_mapper.patient_mapper import mapping
 import re
 
 mapper_dict = {
@@ -10,7 +11,7 @@ def get_mapping(resource_type):
     if not isinstance(resource_type, resource_types):
         raise TypeError('resource_type must be an instance of resource_types Enum')
     
-    return mapper_dict[resource_type]
+    return mapper_dict.get(resource_type, None)
 
 def get_nested_value(data, path):
     """Recursively access nested dictionary or list data using a string path."""

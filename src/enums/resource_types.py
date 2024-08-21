@@ -18,3 +18,4 @@ class resource_types(Enum):
     Observation = "Observation"
     Procedure = "Procedure"
     Provenance = "Provenance"
+    AllergyIntolerance = "AllergyIntolerance"
