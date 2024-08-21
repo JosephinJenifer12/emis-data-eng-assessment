@@ -19,3 +19,5 @@ class resource_types(Enum):
     Procedure = "Procedure"
     Provenance = "Provenance"
     AllergyIntolerance = "AllergyIntolerance"
+    Device = "Device"
+    SupplyDelivery = "SupplyDelivery"
