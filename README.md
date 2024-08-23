@@ -1,9 +1,21 @@
-This repository contains a solution to convert the json data to a tabular format.
+# Data Pipeline Assessment Project:
 
-**Steps to be followed to run this project:**
-1) Ensure Docker runs in your local
-2) Run cmd - **docker-compose up** from this repository
-3) Check the table "Patient" in postgres against the database - DB. You can use make use of PostgreSQL Explorer in visual studio code to check the same.
+This repository contains a data pipeline created using python to extract/transform patient related data from json files and load them into a relational database(postgres) with data integrity.
 
-**Reference docmuents:**
-Data Model and the Relationships can be referred in the document (EMIS-FHIR-DataModel.drawio.pdf) present in this repository
+## High Level Design
+
+![HLD](docs/images/HLD.jpg)
+
+## Steps to be followed to run this project:
+- Ensure Docker runs in your local
+- Execute the following command from the root of the repository. This creates the postgres database and also executes the docker container which in turn triggers the data pipeline to process the data files
+```
+docker-compose up
+```
+- Data will be stored in the following tables in the postgres database:
+    - Patient
+    - Observation
+
+## Data Model
+
+![dataModel](docs/images/dataModel.png)
