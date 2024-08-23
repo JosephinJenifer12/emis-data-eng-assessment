@@ -1,10 +1,12 @@
 from data_model.patient import Patient
 from enums.resource_types import resource_types
-from data_mapper.patient_mapper import mapping
+from data_mapper.patient_mapper import patient_mapping
+from data_mapper.observation_mapper import observation_mapping
 import re
 
 mapper_dict = {
-    resource_types.Patient: mapping
+    resource_types.Patient: patient_mapping,
+    resource_types.Observation: observation_mapping
 }
 
 def get_mapping(resource_type):

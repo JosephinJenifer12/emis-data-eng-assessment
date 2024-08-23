@@ -1,4 +1,4 @@
-mapping = {
+patient_mapping = {
     "PatientGuid": "resource.id",
     "Gender": "resource.gender",
     "BirthDate": "resource.birthDate",

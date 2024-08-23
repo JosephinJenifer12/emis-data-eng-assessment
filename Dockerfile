@@ -8,4 +8,4 @@ RUN pip3 install -r requirements.txt
 COPY ./data ./data
 COPY ./src ./src
 
-CMD python3 ./src/emis-data-processing.py
+CMD python3 ./src/runner.py
