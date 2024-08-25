@@ -1,4 +1,4 @@
-# Data Pipeline Assessment Project:
+# Data Pipeline Assessment
 
 [![Run unit tests](https://github.com/JosephinJenifer12/emis-data-eng-assessment/actions/workflows/run-tests.yml/badge.svg)](https://github.com/JosephinJenifer12/emis-data-eng-assessment/actions/workflows/run-tests.yml)
 
@@ -8,7 +8,7 @@ This repository contains a data pipeline created using python to extract/transfo
 
 ![HLD](docs/images/HLD.jpg)
 
-## Steps to be followed to run this project:
+## Steps to be followed to run this project
 - Below environment variables should be added in .env file at the root of the repository
 ```
     DB_HOST=db
