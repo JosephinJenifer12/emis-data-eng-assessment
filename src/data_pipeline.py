@@ -27,7 +27,7 @@ class DataPipeline():
             resource_type = resource_types(entry_data["resource"]["resourceType"])
             if (resource_type == resource_types.Patient or
                 resource_type == resource_types.Observation):
-                print(f"{len(bulk_data[resource_type.value])} - Processing {resource_type}: {entry_data["resource"]["id"]}")
+                print(f'{len(bulk_data[resource_type.value])} - Processing {resource_type}: {entry_data["resource"]["id"]}')
                 mapping = get_mapping(resource_type)
                 mapped_patient_data = map_data(mapping, entry_data)
                 data_model = get_model(resource_type)(mapped_patient_data)
