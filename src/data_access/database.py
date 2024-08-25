@@ -17,11 +17,8 @@ db_password = os.getenv('DB_PASSWORD')
 db_port = os.getenv('HOST_PORT')
 db_name = os.getenv('DB_NAME')
 
-print(db_password)
-
-def create_db_engine():    
+def create_db_engine():
     DATABASE_URL = f"postgresql+pg8000://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-    print(DATABASE_URL)
     while True:
         try:
             engine = create_engine(DATABASE_URL)

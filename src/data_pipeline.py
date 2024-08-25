@@ -32,14 +32,11 @@ class DataPipeline():
                 mapped_patient_data = map_data(mapping, entry_data)
                 data_model = get_model(resource_type)(mapped_patient_data)
                 bulk_data[resource_type.value].append(data_model)
-        print('return model')
         return bulk_data
     
     def load(self, bulk_data):        
-        if bulk_data:            
-            print('calling create')
+        if bulk_data:
             db_engine = create_db_engine()
-            print('insert')
             insert_bulk_data(db_engine, bulk_data[resource_types.Patient.value])
             insert_bulk_data(db_engine, bulk_data[resource_types.Observation.value])
 
