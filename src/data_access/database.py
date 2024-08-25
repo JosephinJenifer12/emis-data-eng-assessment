@@ -4,10 +4,21 @@ from sqlalchemy import create_engine, select, text, types
 from sqlalchemy.orm import Session
 import pg8000
 from data_model.patient import Patient
+from dotenv import load_dotenv
+import os
 
-def create_db_engine():    
-    DATABASE_URL = "postgresql+pg8000://postgres:postgres@db:5432/DB" # To connect from docker
-    # DATABASE_URL = "postgresql+pg8000://postgres:postgres@127.0.0.1:5432/DB" # To connect from local
+# Load environment variables from .env file
+load_dotenv()
+
+# Access environment variables
+db_host = os.getenv('DB_HOST')
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
+db_port = os.getenv('HOST_PORT')
+db_name = os.getenv('DB_NAME')
+
+def create_db_engine():
+    DATABASE_URL = f"postgresql+pg8000://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
     while True:
         try:
             engine = create_engine(DATABASE_URL)

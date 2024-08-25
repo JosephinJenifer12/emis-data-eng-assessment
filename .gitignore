@@ -160,3 +160,4 @@ gpg/*
 .python-version
 
 db
+.env

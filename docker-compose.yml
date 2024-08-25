@@ -6,11 +6,11 @@ services:
     restart: unless-stopped
     container_name: db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=DB
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     ports:
-      - '5432:5432'
+      - '${HOST_PORT}:${CONTAINER_PORT}'
     networks:
       - app-tier
     volumes:
@@ -23,6 +23,12 @@ services:
       - db
     networks:
       - app-tier
+    environment:
+      - DB_HOST=db
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - HOST_PORT=${HOST_PORT}
     build:
       context: ./
       dockerfile: ./Dockerfile
