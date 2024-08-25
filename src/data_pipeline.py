@@ -14,7 +14,10 @@ class DataPipeline():
         if filename.endswith(".json"):        
             print(f"Processing {filename}...")
             with open(filename, 'r', encoding="utf8") as j:
-                return json.loads(j.read())
+                try:
+                    return json.loads(j.read())
+                except ValueError as e:
+                    print(f"Invalid json file: {filename}")
         else:
             print(f"{filename} skipped")
 
@@ -24,17 +27,19 @@ class DataPipeline():
             resource_type = resource_types(entry_data["resource"]["resourceType"])
             if (resource_type == resource_types.Patient or
                 resource_type == resource_types.Observation):
-                print(f"Processing {resource_type}: {entry_data["resource"]["id"]}")
+                print(f"{len(bulk_data[resource_type.value])} - Processing {resource_type}: {entry_data["resource"]["id"]}")
                 mapping = get_mapping(resource_type)
                 mapped_patient_data = map_data(mapping, entry_data)
                 data_model = get_model(resource_type)(mapped_patient_data)
                 bulk_data[resource_type.value].append(data_model)
+        print('return model')
         return bulk_data
     
-    def load(self, bulk_data):
-        db_engine = create_db_engine()
-        
-        if bulk_data:
+    def load(self, bulk_data):        
+        if bulk_data:            
+            print('calling create')
+            db_engine = create_db_engine()
+            print('insert')
             insert_bulk_data(db_engine, bulk_data[resource_types.Patient.value])
             insert_bulk_data(db_engine, bulk_data[resource_types.Observation.value])
 
