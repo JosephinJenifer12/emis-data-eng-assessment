@@ -1,5 +1,7 @@
 # Data Pipeline Assessment Project:
 
+[![UnitTests](https://github.com/JosephinJenifer12/emis-data-eng-assessment/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/JosephinJenifer12/emis-data-eng-assessment/actions/workflows/run-tests.yml)
+
 This repository contains a data pipeline created using python to extract/transform patient related data from json files and load them into a relational database(postgres) with data integrity.
 
 ## High Level Design
